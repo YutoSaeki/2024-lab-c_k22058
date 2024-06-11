@@ -10,6 +10,17 @@
 
 
     <h2>ログイン</h2>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
     <form action="/login" method="post">
         <label for="username">Username:</label><br>
         <input type="text" id="username" name="username"><br>
@@ -19,6 +30,9 @@
     </form>
     <hr>
     <h2>ユーザ登録</h2>
+
+
+
     <form action="/register" method="post">
         <label for="new_username">New Username:</label><br>
         <input type="text" id="new_username" name="new_username"><br>

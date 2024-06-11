@@ -1,10 +1,12 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy # Flask上でデータベースとのやり取りを行うためのライブラリ（確認用）
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+app.secret_key = 'secret_key'
 
 db = SQLAlchemy(app)
 
@@ -53,12 +55,19 @@ def login():
 
     if not username or not password:
         return jsonify({'message': 'ユーザー名またはパスワードがありません'}), 400
+        #flash('ユーザー名またはパスワードがありません')
+        #return redirect(url_for('login'))
 
     user = User.query.filter_by(username=username).first()
     if user and user.check_password(password):
         return jsonify({'message': 'ログインしました'}), 200
+        #flash('ログインしました')
+        #return redirect(url_for('login'))
 
     return jsonify({'message': 'ユーザー名かパスワードが無効です'}), 400
+    #flash('ユーザー名かパスワードが無効です')
+
+    #return redirect(url_for('login'))
 
 
 
