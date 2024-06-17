@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>addGroup</title>
+</head>
+<body>
+    <h1>グループ追加画面です(確認用)</h1>
+
+    <div class="container">
+    <h2>グループの作成</h2>
+
+    <!-- グループ作成フォーム -->
+    <form id="groupForm">
+        <div class="form-group">
+            <label for="groupName">グループ名:</label>
+            <input type="text" id="groupName" name="groupName" required>
+            <a>（NOT NULL）<a>
+            <!--　required：フォームで入力必須であることを指定する-->
+        </div>
+        <div class="form-group">
+            <button type="submit">作成</button>
+        </div>
+    </form>
+    <div id="result"></div>
+
+</body>
+</html>
